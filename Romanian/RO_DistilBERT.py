@@ -34,7 +34,7 @@ train_df, test_df = train_test_split(
 #Preprocessing
 def clean_text(text):
     text = text.lower()
-    text = re.sub(r'[^\w\s.,!?;:ăâîșțĂÂÎȘȚ]', '', x)
+    text = re.sub(r'[^\w\s.,!?;:ăâîșțĂÂÎȘȚ]', '', text)
     return text
 def preprocess_text(text):
     doc = nlp(text)
