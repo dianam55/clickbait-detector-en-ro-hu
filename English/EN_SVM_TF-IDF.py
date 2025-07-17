@@ -29,6 +29,8 @@ print(df_Clickbait_and_NonClickbait['label'].value_counts())
 df_Clickbait_and_NonClickbait['Headline'] = df_Clickbait_and_NonClickbait['Headline'].str.lower()
 df_Clickbait_and_NonClickbait['Headline'] = df_Clickbait_and_NonClickbait['Headline'].apply(lambda x: re.sub(r"[^a-zA-Z\s.,!?;:]", '', x))
 stop_words = set(stopwords.words('english'))
+negations = {'no', 'not', 'none', 'never', "n't"}  
+stop_words = stop_words.difference(negations)  #keep negation
 lemmatizer = WordNetLemmatizer()
 df_Clickbait_and_NonClickbait['tokens'] = df_Clickbait_and_NonClickbait['Headline'].apply(word_tokenize)
 df_Clickbait_and_NonClickbait['tokens'] = df_Clickbait_and_NonClickbait['tokens'].apply(lambda x: [word for word in x if word not in stop_words])
@@ -40,7 +42,7 @@ y = df_Clickbait_and_NonClickbait['label']
 X_train_text, X_test_text, y_train, y_test = train_test_split(X_text, y, test_size=0.2, random_state=42, stratify=y)
 
 #TF-IDF 
-tfidf_vectorizer = TfidfVectorizer(max_features=5000, ngram_range=(1, 2))  # Adjust max_features and ngram_range as needed
+tfidf_vectorizer = TfidfVectorizer(max_features=5000, ngram_range=(1, 2))  
 X_train = tfidf_vectorizer.fit_transform(X_train_text)
 X_test = tfidf_vectorizer.transform(X_test_text)
 
