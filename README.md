@@ -10,6 +10,11 @@ Exploratory data analysis (EDA) is also provided for each dataset, including com
 
 ## Transformer Models
 
+- English: "distilbert-base-uncased"
+- Romanian: "dumitrescustefan/bert-base-romanian-cased-v1" and "racai/distilbert-base-romanian-cased"
+- Hungarian: "SZTAKI-HLT/hubert-base-cc"
+
+
 ## Datasets:
 
 The datasets used in this project contain headlines labeled as clickbait(1) or non-clickbait(0). Each dataset contains 32.000 rows of data.
