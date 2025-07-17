@@ -77,11 +77,9 @@ def get_sentiment(text):
         if not isinstance(text, str) or pd.isna(text):
             return 0.0, 0.0
         result = sentiment_analyzer(text, truncation=True, max_length=512)
-        # Map BERT output to polarity (-1 to 1)
         label = result[0]['label']
         score = result[0]['score']
         polarity = score if label == 'POSITIVE' else -score
-        # Approximate subjectivity based on confidence
         subjectivity = 1 - score if score > 0.5 else score
         return polarity, subjectivity
     except Exception:
