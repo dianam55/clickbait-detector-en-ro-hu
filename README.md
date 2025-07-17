@@ -16,7 +16,6 @@ The datasets used in this project contain headlines labeled as clickbait(1) or n
   
   Combined from two sources:
       - https://www.kaggle.com/datasets/andreeaginga/clickbait?resource=download
-  
       - https://github.com/dariabroscoteanu/RoCliCo
   
   The Romanian dataset includes augmented data created by me and new headlines collected and cleaned from Reddit.
