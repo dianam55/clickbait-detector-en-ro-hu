@@ -30,13 +30,25 @@ train_df = pd.DataFrame({'Headline': X_train, 'label': y_train}).reset_index(dro
 test_df = pd.DataFrame({'Headline': X_test, 'label': y_test}).reset_index(drop=True)
 
 #Preprocessing
+stop_words = set(stopwords.words('english'))
+negations = {'no', 'not', 'none', 'never', "n't"}
+stop_words = stop_words.difference(negations)
+
 def preprocess(df_Clickbait_and_NonClickbait):
-    df_Clickbait_and_NonClickbait['cleaned_Headline'] = df_Clickbait_and_NonClickbait['Headline'].str.lower().str.replace(r"[^a-zA-Z\s.,!?;:]", '', regex=True)
-    #Semantic features
+    df_Clickbait_and_NonClickbait['cleaned_Headline'] = df_Clickbait_and_NonClickbait['Headline'].str.lower().str.replace(r"[^a-zA-Z\s.,!?;:]", '', regex=True)    
+    #Tokenizer and filtered stopwords
+    def filter_stopwords(text):
+        tokens = word_tokenize(text)
+        filtered_tokens = [w for w in tokens if w not in stop_words]
+        return ' '.join(filtered_tokens)
+    
+    df_Clickbait_and_NonClickbait['cleaned_Headline'] = df_Clickbait_and_NonClickbait['cleaned_Headline'].apply(filter_stopwords)
+    #semnatics
     df_Clickbait_and_NonClickbait['headline_length'] = df_Clickbait_and_NonClickbait['Headline'].apply(len)
     df_Clickbait_and_NonClickbait['word_count'] = df_Clickbait_and_NonClickbait['Headline'].apply(lambda x: len(x.split()))
     df_Clickbait_and_NonClickbait['exclamation_count'] = df_Clickbait_and_NonClickbait['Headline'].str.count('!')
     df_Clickbait_and_NonClickbait['has_hyperbole'] = df_Clickbait_and_NonClickbait['Headline'].str.contains('shocking|believe|amazing', case=False).astype(int)
+    
     return df_Clickbait_and_NonClickbait
 
 train_df = preprocess(train_df)
