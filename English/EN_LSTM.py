@@ -32,6 +32,8 @@ df_Clickbait_and_NonClickbait['Headline'] = df_Clickbait_and_NonClickbait['Headl
 df_Clickbait_and_NonClickbait['Headline'] = df_Clickbait_and_NonClickbait['Headline'].apply(lambda x: re.sub(r"[^a-zA-Z\s.,!?;:]", '', x))
 df_Clickbait_and_NonClickbait['tokens'] = df_Clickbait_and_NonClickbait['Headline'].apply(word_tokenize)
 stop_words = set(stopwords.words('english'))
+negations = {'no', 'not', 'none', 'never', "n't"}
+stop_words = stop_words.difference(negations)
 df_Clickbait_and_NonClickbait['tokens'] = df_Clickbait_and_NonClickbait['tokens'].apply(lambda x: [word for word in x if word not in stop_words])
 lemmatizer = WordNetLemmatizer()
 
