@@ -24,7 +24,19 @@ print(df_Clickbait_and_NonClickbait.head())
 print(df_Clickbait_and_NonClickbait['label'].value_counts())
 
 #Preprocessing
-df_Clickbait_and_NonClickbait['cleaned_Headline'] = (df_Clickbait_and_NonClickbait['Headline'].str.lower().str.replace(r"[^a-zA-Z\s.,!?;:]", '', regex=True))
+stop_words = set(stopwords.words('english'))
+negations = {'no', 'not', 'none', 'never', "n't"}
+stop_words = stop_words.difference(negations)
+
+def preprocess(text):
+    text = text.lower()
+    text = re.sub(r"[^a-zA-Z\s.,!?;:]", '', text)
+    tokens = word_tokenize(text)
+    tokens = [w for w in tokens if w not in stop_words]
+    return ' '.join(tokens)
+
+df_Clickbait_and_NonClickbait['cleaned_Headline'] = df_Clickbait_and_NonClickbait['Headline'].apply(preprocess)
+
 
 X_text = df_Clickbait_and_NonClickbait['cleaned_Headline']
 y = df_Clickbait_and_NonClickbait['label']
