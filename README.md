@@ -15,7 +15,7 @@ Exploratory data analysis (EDA) is also provided for each dataset, including com
 - Hungarian: "SZTAKI-HLT/hubert-base-cc"
 
 
-## Datasets:
+## Datasets
 
 The datasets used in this project contain headlines labeled as clickbait(1) or non-clickbait(0). Each dataset contains 32.000 rows of data.
 - English dataset: https://www.kaggle.com/datasets/amananandrai/clickbait-dataset
