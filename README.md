@@ -1,6 +1,6 @@
 # clickbait-detector
 
-Project Overview
+## Project Overview
 
 This repository contains code and datasets for detecting clickbait headlines in three languages: English, Romanian, and Hungarian. Multiple machine learning and deep learning models are implemented and evaluated, including:
 - Traditional models: SVM (with two variations: SBERT embeddings and TF-IDF), Random Forest
@@ -8,7 +8,9 @@ This repository contains code and datasets for detecting clickbait headlines in 
 
 Exploratory data analysis (EDA) is also provided for each dataset, including common bigrams, punctuation patterns, and sentiment analysis.
 
-Datasets:
+## Transformer Models
+
+## Datasets:
 
 The datasets used in this project contain headlines labeled as clickbait(1) or non-clickbait(0). Each dataset contains 32.000 rows of data.
 - English dataset: https://www.kaggle.com/datasets/amananandrai/clickbait-dataset
