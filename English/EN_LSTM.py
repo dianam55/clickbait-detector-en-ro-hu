@@ -81,7 +81,7 @@ with open(glove_dir, encoding='utf-8') as f:
 print(f"Loaded {len(embeddings_index)} word vectors.")
 
 #embedding matrix
-embedding_matrix = np.zeros((max_words, embedding_dim))
+embedding_matrix = np.zeros((max_words, embedding_dim)) #converts word indexes into their GloVe vectors
 for word, i in tokenizer.word_index.items():
     if i < max_words:
         embedding_vector = embeddings_index.get(word)
