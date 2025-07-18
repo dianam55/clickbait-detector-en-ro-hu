@@ -45,7 +45,7 @@ X_train_text, X_test_text, y_train, y_test = train_test_split(X_text, y, test_si
 #SBERT model
 model = SentenceTransformer('all-MiniLM-L6-v2')
 
-X_train = model.encode(X_train_text.tolist(), show_progress_bar=True)
+X_train = model.encode(X_train_text.tolist(), show_progress_bar=True) #text gets converted into numerical vectors
 X_test = model.encode(X_test_text.tolist(), show_progress_bar=True)
 
 param_grid = {
