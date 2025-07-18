@@ -59,10 +59,10 @@ max_len = 20
 tokenizer = Tokenizer(num_words=max_words, oov_token='<OOV>')
 tokenizer.fit_on_texts(X_train_text)
 
-X_train_sequences = tokenizer.texts_to_sequences(X_train_text)
+X_train_sequences = tokenizer.texts_to_sequences(X_train_text) #converts each headline into a list of word indexes
 X_test_sequences = tokenizer.texts_to_sequences(X_test_text)
-X_train = pad_sequences(X_train_sequences, maxlen=max_len, padding='post', truncating='post')
-X_test = pad_sequences(X_test_sequences, maxlen=max_len, padding='post', truncating='post')
+X_train = pad_sequences(X_train_sequences, maxlen=max_len, padding='post', truncating='post') #adds zeros after the sequence if shorter than max_len
+X_test = pad_sequences(X_test_sequences, maxlen=max_len, padding='post', truncating='post') #cut off words after max_len if sequence is longer
 
 #GloVe embeddings
 embedding_dim = 300
