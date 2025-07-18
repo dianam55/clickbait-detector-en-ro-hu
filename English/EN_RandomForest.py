@@ -67,13 +67,13 @@ scaler = StandardScaler()
 train_semantic_features_scaled = scaler.fit_transform(train_semantic_features)
 test_semantic_features_scaled = scaler.transform(test_semantic_features)
 
-X_train = np.hstack([train_embeddings, train_semantic_features_scaled])
+X_train = np.hstack([train_embeddings, train_semantic_features_scaled]) #concatenates SBERT embeddings and scaled semantic features
 X_test = np.hstack([test_embeddings, test_semantic_features_scaled])
 
 param_grid = {
-    'n_estimators': [100, 200],
-    'max_depth': [None, 30],
-    'min_samples_split': [2, 5],
+    'n_estimators': [100, 200], #Number of trees
+    'max_depth': [None, 30], #maximum depth of each tree
+    'min_samples_split': [2, 5], #minimum samples needed to split a node
     'class_weight': ['balanced']
 }
 
