@@ -41,7 +41,7 @@ tokenizer = DistilBertTokenizer.from_pretrained('distilbert-base-uncased')
 max_len = 20
 
 #Tokenizer
-def encode_texts(texts, tokenizer, max_len):
+def encode_texts(texts, tokenizer, max_len):  #uses the DistilBERT tokenizer to convert texts into token IDs/pad or truncate texts/returns TensorFlow tensors 
     return tokenizer(
         texts.tolist(),
         max_length=max_len,
@@ -60,7 +60,7 @@ attention_mask = X['attention_mask'].numpy()
 X_train = {'input_ids': input_ids_train, 'attention_mask': attention_mask_train}
 X_test = {'input_ids': input_ids_test, 'attention_mask': attention_mask_test}
 
-train_dataset = tf.data.Dataset.from_tensor_slices(({'input_ids': X_train['input_ids'], 'attention_mask': X_train['attention_mask']},y_train)).batch(8)
+train_dataset = tf.data.Dataset.from_tensor_slices(({'input_ids': X_train['input_ids'], 'attention_mask': X_train['attention_mask']},y_train)).batch(8) #creates batches of data for training and validation.
 test_dataset = tf.data.Dataset.from_tensor_slices(({'input_ids': X_test['input_ids'], 'attention_mask': X_test['attention_mask']},y_test)).batch(8)
 
 #DistilBERT model
